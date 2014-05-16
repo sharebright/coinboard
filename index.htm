@@ -41,6 +41,11 @@
         $.getJSON("https://blockexplorer.com/q/getblockcount",  function(height_data) {
             $("#height").append(height_data);
         });
+        
+        $.getJSON("https://mining.bitcoin.cz/accounts/profile/json/118459-845737-35c87a03b48d6ba76eb0a524a906094b",  function(slush_data) {
+            $("#slush-confirmed").append(slush_data.confirmed_reward);
+            $("#slush-hashrate").append(slush_data.hashrate);
+        });
     </script>
 </head>
 <body>
