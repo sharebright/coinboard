@@ -18,11 +18,19 @@
             //$("#rate-EUR").append(data.bpi.EUR.symbol + "" + data.bpi.EUR.rate);
         });
 
-        $.getJSON("https://cryptostocks.com/api/get_security_info.json?ticker=XDC",  function(stock_data) {
-
-       $("#ticker").append(stock_data.highest_bid );
-
-    });
+        $.getJSON("https://cryptostocks.com/api/get_security_info.json?ticker=XDC",  function(cs_data) {
+            $("#cs-ticker").append(cs_data.highest_bid );
+        });
+        
+        $.getJSON("https://www.bitstamp.net/api/ticker/",  function(bitstamp_data) {
+            $("#bs-ticker-high").append(bitstamp_data.high );
+        });
+        
+        $.getJSON("https://btc-e.com/api/2/btc_usd/ticker",  function(btce_data) {
+            $("#btc-ticker-avg").append(btce_data.ticker.avg );
+        });
+        
+        
     </script>
 </head>
 <body>
