@@ -27,10 +27,20 @@
         });
         
         $.getJSON("https://btc-e.com/api/2/btc_usd/ticker",  function(btce_data) {
-            $("#btc-ticker-avg").append(btce_data.ticker.avg );
+            $("#btce-ticker-avg").append(btce_data.ticker.avg );
         });
         
+        $.getJSON("https://blockchain.info/address/1DugongACGcyyvvgvcy8skYyezsx5jy3aV?format=json",  function(address_data) {
+            $("#btc-final-balance").append(address_data.final_balance );
+        });
+
+        $.getJSON("https://blockexplorer.com/q/getdifficulty",  function(diff_data) {
+            $("#difficulty").append(diff_data);
+        });
         
+        $.getJSON("https://blockexplorer.com/q/getblockcount",  function(height_data) {
+            $("#height").append(height_data);
+        });
     </script>
 </head>
 <body>
