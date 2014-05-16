@@ -2,13 +2,13 @@
 <html>
 <!-- Original version by Richard Mitchell - Red Gate Software Ltd -->
 <head>
-  <title id="title">New Biz</title>
+  <title id="title">Coinboard by Bitcoin Brisbane</title>
   <link rel="stylesheet" href="/assets/reset-min.css" type="text/css" media="all" />
   <link rel="stylesheet" href="assets/styles.css" type="text/css" media="all" />
   
   <script type="text/javascript" src="assets/scripts/jqury-1.11.1.js"></script>
-  
   <script type="text/javascript" src="/assets/scripts/jquery-ui-1.8.5.custom.min.js"></script>
+    
   <!-- Warning - I have modified this file slightly to make it work for my nefarious porpoises -->
   <script type="text/javascript" src="/assets/scripts/jquery.carousel.edited.js"></script>
     <script>
@@ -31,11 +31,11 @@
         });
         
         $.getJSON("https://blockchain.info/address/1DugongACGcyyvvgvcy8skYyezsx5jy3aV?format=json",  function(address_data) {
-            $("#btc-final-balance").append(address_data.final_balance );
+            $("#btc-final-balance").append(address_data.final_balance / 10000000);
         });
 
         $.getJSON("https://blockexplorer.com/q/getdifficulty",  function(diff_data) {
-            $("#difficulty").append(diff_data);
+            $("#difficulty").append(diff_data.toFixed(0));
         });
         
         $.getJSON("https://blockexplorer.com/q/getblockcount",  function(height_data) {
@@ -45,6 +45,22 @@
         $.getJSON("https://mining.bitcoin.cz/accounts/profile/json/118459-845737-35c87a03b48d6ba76eb0a524a906094b",  function(slush_data) {
             $("#slush-confirmed").append(slush_data.confirmed_reward);
             $("#slush-hashrate").append(slush_data.hashrate);
+        });
+        
+        $.getJSON("https://blockchain.info/tx-index/0e6228c2ba8c6e312960af13daebe9c0fb12c6eaf1367d48107b59e49ca09296?format=json",  function(tx_data) {
+            //$("#slush-confirmed").append(tx_data.confirmed_reward);
+            //$("#slush-hashrate").append(tx_data.hashrate);
+        });
+        
+        //Network avg txs
+        $.getJSON("https://blockchain.info/q/avgtxnumber",  function(network_tx_data) {
+            $("#network_tx_data").append(network_tx_data);
+            //$("#slush-hashrate").append(tx_data.hashrate);
+        });
+        
+        //Network hash rate
+        $.getJSON("https://blockchain.info/q/hashrate",  function(network_hash_data) {
+            $("#network_hash_data").append(network_hash_data);
         });
     </script>
 </head>
@@ -145,7 +161,7 @@
       jQuery.ajax(
 			{
 			  type: 'GET',
-			  url: 'data/2011-06x.htm?q=' + new Date().getTime(), // To prevent caching I force a get of this every time with the querystring
+			  url: 'data/data.htm?q=' + new Date().getTime(), // To prevent caching I force a get of this every time with the querystring
 			  success: function (html) {
 			    // Interpet the data file starting at the root data <div>
 			    $(html).filter('div').each(function () {

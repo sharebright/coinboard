@@ -1,14 +1,15 @@
 <html>
 <head>
-    <title>Coinboard by Bitcoin Brisbane</title>
+    <title></title>
 </head>
   <body>
     <!-- Page 0 -->
-    <div title="Bitcoin">
+    <div title="Bitcoin Data">
       <!-- Row 1 -->
       <div class="width2">
-        <p class="big">1DugongACGcyyvvgvcy8skYyezsx5jy3aV</p>
+        <p class="large">1DugongACGcyyvvgvcy8skYyezsx5jy3aV</p>
         <p class="big" id="btc-final-balance"></p>
+        <p>Tips to this address welcomed!</p>
       </div>
       <div>
         <p>Difficulty <span class="largest" id="difficulty"></span></p>
@@ -16,19 +17,16 @@
 
       <!-- Row 2 -->
       <div class="widthHalf" ref="4">
-      <p><span class="massive"></span></p>
-      <p></p>
+        <p></p>
+        <p><span class="massive" id="network_tx_data"></span></p>
       </div>
 
       <div class="widthHalf nomargin dark">
-        <p><span class="largest" id="bs-ticker-high"></span></p>
-        <p class="large">USD</p>
-        <p>Bitstamp High</p>
       </div>
 
       <div class="foo" ref="1"> <!-- Jump to page 1 -->
         <p><span class="largest" id="coindesk-rate-USD"></span></p>
-        <p>USD</p>
+        <p class="large">USD</p>
         <p>Coindesk Index</p>
       </div>
       <div class="cld">
@@ -39,16 +37,19 @@
 
       <!-- Row 3 -->
       <div class="foo" ref="1">
+        <p><span class="largest" id="bs-ticker-high"></span></p>
+        <p class="large">USD</p>
+        <p>Bitstamp High</p>
+      </div>
+      <div>
           <p><span class="largest" id="cs-ticker"></span></p>
           <p>CryptoStocks <span class="large">XDC</span></p>
       </div>
-      <div>
-      </div>
       <div class="widthHalf cld" ref="3">
-          <p>Height</p><p class="large" id="height"></p>
+          <p>Block Height</p><p class="large" id="height"></p>
       </div>
       <div class="widthHalf foo nomargin">
-          <span id="#btce-ticker-avg"></span>
+          <span id="#network_hash_data"></span>
       </div>
     </div>
 
