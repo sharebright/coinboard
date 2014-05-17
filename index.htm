@@ -42,26 +42,35 @@
             $("#height").append(height_data);
         });
         
-        $.getJSON("https://mining.bitcoin.cz/accounts/profile/json/118459-845737-35c87a03b48d6ba76eb0a524a906094b",  function(slush_data) {
+        //mining.bitcoin.cz with dummy token
+        //replace 845737-35c87a03b48d6ba76eb0a524a906094b with your token
+        $.getJSON("https://mining.bitcoin.cz/accounts/profile/json/845737-35c87a03b48d6ba76eb0a524a906094b",  function(slush_data) {
             $("#slush-confirmed").append(slush_data.confirmed_reward);
             $("#slush-hashrate").append(slush_data.hashrate);
         });
         
+        //pool stats https://mining.bitcoin.cz/stats/json/845737-35c87a03b48d6ba76eb0a524a906094b
+        //replace 845737-35c87a03b48d6ba76eb0a524a906094b with your token
+        $.getJSON("https://mining.bitcoin.cz/stats/json/845737-35c87a03b48d6ba76eb0a524a906094b",  function(slush_pool_data) {
+            $("#pool-workers").append(slush_pool_data.active_workers);
+        });
+        
         $.getJSON("https://blockchain.info/tx-index/0e6228c2ba8c6e312960af13daebe9c0fb12c6eaf1367d48107b59e49ca09296?format=json",  function(tx_data) {
-            //$("#slush-confirmed").append(tx_data.confirmed_reward);
-            //$("#slush-hashrate").append(tx_data.hashrate);
+            //$("#").append(tx_data);
         });
         
         //Network avg txs
         $.getJSON("https://blockchain.info/q/avgtxnumber",  function(network_tx_data) {
             $("#network_tx_data").append(network_tx_data);
-            //$("#slush-hashrate").append(tx_data.hashrate);
         });
         
         //Network hash rate
         $.getJSON("https://blockchain.info/q/hashrate",  function(network_hash_data) {
-            $("#network_hash_data").append(network_hash_data);
+            $("#network_hash_data").append(network_hash_data / 1000).toFixed(0);
         });
+        
+        //OTHER
+        //https://btc-e.com/api/2/ltc_btc/trades
     </script>
 </head>
 <body>
