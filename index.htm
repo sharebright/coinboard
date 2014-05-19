@@ -3,15 +3,32 @@
 <!-- Original version by Richard Mitchell - Red Gate Software Ltd -->
 <head>
   <title id="title">Coinboard by Bitcoin Brisbane</title>
-  <link rel="stylesheet" href="/assets/reset-min.css" type="text/css" media="all" />
+  <link rel="stylesheet" href="assets/reset-min.css" type="text/css" media="all" />
   <link rel="stylesheet" href="assets/styles.css" type="text/css" media="all" />
   
   <script type="text/javascript" src="assets/scripts/jqury-1.11.1.js"></script>
-  <script type="text/javascript" src="/assets/scripts/jquery-ui-1.8.5.custom.min.js"></script>
+  <script type="text/javascript" src="assets/scripts/jquery-ui-1.8.5.custom.min.js"></script>
+  //<script type="text/javascript" src="assets/scripts/jquery.cookie.js"></script>
     
   <!-- Warning - I have modified this file slightly to make it work for my nefarious porpoises -->
   <script type="text/javascript" src="/assets/scripts/jquery.carousel.edited.js"></script>
     <script>
+        function getCookie(cname)
+        {
+            var name = cname + "=";
+            var ca = document.cookie.split(';');
+            for(var i=0; i<ca.length; i++) 
+              {
+              var c = ca[i].trim();
+              if (c.indexOf(name)==0) return c.substring(name.length,c.length);
+              }
+            return "";
+        }
+        
+        //Only do this once.  Set your cookies
+        document.cookie="address=1DugongACGcyyvvgvcy8skYyezsx5jy3aV";
+        document.cookie="bitcoincz=845737-35c87a03b48d6ba76eb0a524a906094b";
+
         $.getJSON("https://api.coindesk.com/v1/bpi/currentprice.json", function (data) {
             $("#coindesk-rate-USD").append(data.bpi.USD.symbol + data.bpi.USD.rate);
             //$("#rate-GBP").append(data.bpi.GBP.symbol + "" + data.bpi.GBP.rate);
@@ -30,7 +47,9 @@
             $("#btce-ticker-avg").append(btce_data.ticker.avg );
         });
         
-        $.getJSON("https://blockchain.info/address/1DugongACGcyyvvgvcy8skYyezsx5jy3aV?format=json",  function(address_data) {
+        var addressCookie = getCookie("address");
+        
+        $.getJSON("https://blockchain.info/address/" + addressCookie + "?format=json",  function(address_data) {
             $("#btc-final-balance").append(address_data.final_balance / 10000000);
         });
 
@@ -43,15 +62,14 @@
         });
         
         //mining.bitcoin.cz with dummy token
-        //replace 845737-35c87a03b48d6ba76eb0a524a906094b with your token
-        $.getJSON("https://mining.bitcoin.cz/accounts/profile/json/845737-35c87a03b48d6ba76eb0a524a906094b",  function(slush_data) {
+        var bitcoinczCookie = getCookie("bitcoincz");
+        $.getJSON("https://mining.bitcoin.cz/accounts/profile/json/" + bitcoinczCookie,  function(slush_data) {
             $("#slush-confirmed").append(slush_data.confirmed_reward);
             $("#slush-hashrate").append(slush_data.hashrate);
         });
         
         //pool stats https://mining.bitcoin.cz/stats/json/845737-35c87a03b48d6ba76eb0a524a906094b
-        //replace 845737-35c87a03b48d6ba76eb0a524a906094b with your token
-        $.getJSON("https://mining.bitcoin.cz/stats/json/845737-35c87a03b48d6ba76eb0a524a906094b",  function(slush_pool_data) {
+        $.getJSON("https://mining.bitcoin.cz/stats/json/" + bitcoinczCookie,  function(slush_pool_data) {
             $("#pool-workers").append(slush_pool_data.active_workers);
         });
         
