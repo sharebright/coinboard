@@ -8,7 +8,6 @@
   
   <script type="text/javascript" src="assets/scripts/jqury-1.11.1.js"></script>
   <script type="text/javascript" src="assets/scripts/jquery-ui-1.8.5.custom.min.js"></script>
-  //<script type="text/javascript" src="assets/scripts/jquery.cookie.js"></script>
     
   <!-- Warning - I have modified this file slightly to make it work for my nefarious porpoises -->
   <script type="text/javascript" src="/assets/scripts/jquery.carousel.edited.js"></script>
@@ -45,6 +44,10 @@
         
         $.getJSON("https://btc-e.com/api/2/btc_usd/ticker",  function(btce_data) {
             $("#btce-ticker-avg").append(btce_data.ticker.avg );
+        });
+        
+        $.getJSON("https://api.btcmarkets.net/market/BTC/AUD/tick",  function(btcmarkets_data) {
+            $("#btcmarkets-ticker-last").append(btcmarkets.lastPrice );
         });
         
         var addressCookie = getCookie("address");
