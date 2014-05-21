@@ -47,7 +47,7 @@
         });
         
         $.getJSON("https://api.btcmarkets.net/market/BTC/AUD/tick",  function(btcmarkets_data) {
-            $("#btcmarkets-ticker-last").append(btcmarkets.lastPrice );
+            $("#btcmarkets-ticker-last").append(btcmarkets_data.lastPrice );
         });
         
         var addressCookie = getCookie("address");
